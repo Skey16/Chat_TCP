@@ -2,7 +2,7 @@ console.clear();
 const net = require('node:net');
 
 const port=3000;
-const host= '192.168.2.162';
+const host= '192.168.69.132';
 
 const client = new net.Socket();
 client.connect(port, host);
@@ -20,6 +20,7 @@ client.on('data', (data)=>{
 
 client.on("error", (err) => {
     if (err.errno == -4077) {
+     
       console.log("Se ha perdido comunicación con el servidor");
     } else {
       console.error(err);

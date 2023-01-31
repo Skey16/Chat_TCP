@@ -5,7 +5,7 @@ const i=0;
 const userNames = {};
 const arrayU= [];
 const port=3000;
-const host= '192.168.2.162';
+const host= '192.168.69.132';
 
 
 server.on('connection',(socket)=>{
@@ -44,9 +44,9 @@ server.on('connection',(socket)=>{
  });
 
   socket.on('close',()=>{
-    arrayUsers.map((user) => {
+    arrayU.map((user) => {
       user.write(
-        nickNames[client.remoteAddress] + " se ha desconectado del servidor."+"\n");
+        userNames[socket.remoteAddress] + "\tse ha desconectado del servidor.");
     });
 
   });
@@ -62,12 +62,12 @@ server.on('connection',(socket)=>{
   socket.on('error', (err)=>{
     if(err.errno == -4077){
        
-        arrayUsers.map((user) => {
+        arrayU.map((user) => {
           user.write(
-            nickNames[client.remoteAddress] + " se ha desconectado del servidor."+"\n");
+            userNames[socket.remoteAddress] + "\t se ha desconectado del servidor.");
         });
 
-    console.log( userNames[socket.remoteAddress] + "se ha desconectado del servidor."+"\n");
+    console.log( userNames[socket.remoteAddress] + "\tse ha desconectado del servidor.");
     }else{
         console.error(err);
     }
